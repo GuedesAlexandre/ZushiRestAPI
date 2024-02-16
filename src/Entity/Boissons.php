@@ -3,19 +3,22 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\AlimentsRepository;
+use App\Repository\BoissonsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AlimentsRepository::class)]
+#[ORM\Entity(repositoryClass: BoissonsRepository::class)]
 #[ApiResource()]
-class Aliments
+class Boissons
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+    #[ORM\Column]
+    private ?float $prix = null;
 
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
@@ -23,17 +26,29 @@ class Aliments
     #[ORM\Column]
     private ?int $quantite = null;
 
-    #[ORM\ManyToMany(targetEntity: Boxs::class, mappedBy: 'id_aliments')]
-    private Collection $id_boxes;
+    #[ORM\ManyToMany(targetEntity: Commandes::class, mappedBy: 'id_boissons')]
+    private Collection $id_commandes;
 
     public function __construct()
     {
-        $this->id_boxes = new ArrayCollection();
+        $this->id_commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): static
+    {
+        $this->prix = $prix;
+
+        return $this;
     }
 
     public function getNom(): ?string
@@ -61,27 +76,27 @@ class Aliments
     }
 
     /**
-     * @return Collection<int, Boxs>
+     * @return Collection<int, Commandes>
      */
-    public function getIdBoxes(): Collection
+    public function getIdCommandes(): Collection
     {
-        return $this->id_boxes;
+        return $this->id_commandes;
     }
 
-    public function addIdBox(Boxs $idBox): static
+    public function addIdCommande(Commandes $idCommande): static
     {
-        if (!$this->id_boxes->contains($idBox)) {
-            $this->id_boxes->add($idBox);
-            $idBox->addIdAliment($this);
+        if (!$this->id_commandes->contains($idCommande)) {
+            $this->id_commandes->add($idCommande);
+            $idCommande->addIdBoisson($this);
         }
 
         return $this;
     }
 
-    public function removeIdBox(Boxs $idBox): static
+    public function removeIdCommande(Commandes $idCommande): static
     {
-        if ($this->id_boxes->removeElement($idBox)) {
-            $idBox->removeIdAliment($this);
+        if ($this->id_commandes->removeElement($idCommande)) {
+            $idCommande->removeIdBoisson($this);
         }
 
         return $this;
