@@ -7,32 +7,43 @@ use App\Repository\BoxsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: BoxsRepository::class)]
-#[ApiResource()]
+#[ApiResource(
+    normalizationContext: ['groups' => ['boxs']]
+
+)]
 class Boxs
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['boxs'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['boxs'])]
     private ?string $nom = null;
 
     #[ORM\Column]
+    #[Groups(['boxs'])]
     private ?float $prix = null;
 
     #[ORM\Column]
+    #[Groups(['boxs'])]
     private ?int $pieces = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['boxs'])]
     private ?string $img = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['boxs'])]
     private ?string $saveurs = null;
 
     #[ORM\ManyToMany(targetEntity: Aliments::class, inversedBy: 'id_boxes')]
+    #[Groups(['boxs'])]
     private Collection $id_aliments;
 
     #[ORM\ManyToMany(targetEntity: Commandes::class, inversedBy: 'id_boxs')]
