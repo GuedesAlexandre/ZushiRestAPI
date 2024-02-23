@@ -1,3 +1,0 @@
-<?php //route_name_9f6850d29f5def6a2692ad5f7988bc12
-
-return [PHP_INT_MAX, 'api_boxs_get_item'];
