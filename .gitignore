@@ -1,1 +1,9 @@
-var/cache/dev/pools/system/JEHM8yKVRD/M/P/dQjhoR-R4WG-rLsfUTBw 2
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
