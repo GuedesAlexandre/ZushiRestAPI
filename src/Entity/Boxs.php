@@ -19,15 +19,15 @@ class Boxs
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['boxs'])]
+    #[Groups(['boxs', 'commandes'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['boxs'])]
+    #[Groups(['boxs', 'commandes'])]
     private ?string $nom = null;
 
     #[ORM\Column]
-    #[Groups(['boxs'])]
+    #[Groups(['boxs', 'commandes'])]
     private ?float $prix = null;
 
     #[ORM\Column]

@@ -24,7 +24,7 @@ class Aliments
     private ?string $nom = null;
 
     #[ORM\Column]
-    #[Groups(['boxs'])]
+
     private ?int $quantite = null;
 
     #[ORM\ManyToMany(targetEntity: Boxs::class, mappedBy: 'id_aliments')]

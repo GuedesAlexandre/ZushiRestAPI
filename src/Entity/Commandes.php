@@ -8,20 +8,27 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CommandesRepository::class)]
-#[ApiResource()]
+#[ApiResource(
+    normalizationContext: ['groups' => ['commandes']]
+
+)]
 class Commandes
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['commandes'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Groups(['commandes'])]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column]
+    #[Groups(['commandes'])]
     private ?float $prix_total = null;
 
     #[ORM\ManyToMany(targetEntity: Boxs::class, mappedBy: 'id_commandes')]
