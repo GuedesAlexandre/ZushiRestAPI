@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BoissonsRepository::class)]
 #[ApiResource()]
+
 class Boissons
 {
     #[ORM\Id]
@@ -21,6 +22,7 @@ class Boissons
     private ?float $prix = null;
 
     #[ORM\Column(length: 255)]
+
     private ?string $nom = null;
 
     #[ORM\Column]

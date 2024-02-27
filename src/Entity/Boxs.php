@@ -38,9 +38,7 @@ class Boxs
     #[Groups(['boxs'])]
     private ?string $img = null;
 
-    #[ORM\Column(length: 255)]
-    #[Groups(['boxs'])]
-    private ?string $saveurs = null;
+
 
     #[ORM\ManyToMany(targetEntity: Aliments::class, inversedBy: 'id_boxes')]
     #[Groups(['boxs'])]
@@ -49,10 +47,15 @@ class Boxs
     #[ORM\ManyToMany(targetEntity: Commandes::class, inversedBy: 'id_boxs')]
     private Collection $id_commandes;
 
+    #[ORM\ManyToMany(targetEntity: Saveurs::class, inversedBy: 'boxs')]
+    #[Groups(['boxs'])]
+    private Collection $id_saveurs;
+
     public function __construct()
     {
         $this->id_aliments = new ArrayCollection();
         $this->id_commandes = new ArrayCollection();
+        $this->id_saveurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -108,17 +111,6 @@ class Boxs
         return $this;
     }
 
-    public function getSaveurs(): ?string
-    {
-        return $this->saveurs;
-    }
-
-    public function setSaveurs(string $saveurs): static
-    {
-        $this->saveurs = $saveurs;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Aliments>
@@ -164,6 +156,30 @@ class Boxs
     public function removeIdCommande(Commandes $idCommande): static
     {
         $this->id_commandes->removeElement($idCommande);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Saveurs>
+     */
+    public function getIdSaveurs(): Collection
+    {
+        return $this->id_saveurs;
+    }
+
+    public function addIdSaveur(Saveurs $idSaveur): static
+    {
+        if (!$this->id_saveurs->contains($idSaveur)) {
+            $this->id_saveurs->add($idSaveur);
+        }
+
+        return $this;
+    }
+
+    public function removeIdSaveur(Saveurs $idSaveur): static
+    {
+        $this->id_saveurs->removeElement($idSaveur);
 
         return $this;
     }
