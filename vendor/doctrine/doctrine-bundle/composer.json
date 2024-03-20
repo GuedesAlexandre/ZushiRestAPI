@@ -58,6 +58,7 @@
         "symfony/property-info": "^5.4 || ^6.0 || ^7.0",
         "symfony/proxy-manager-bridge": "^5.4 || ^6.0 || ^7.0",
         "symfony/security-bundle": "^5.4 || ^6.0 || ^7.0",
+        "symfony/stopwatch": "^5.4 || ^6.0 || ^7.0",
         "symfony/string": "^5.4 || ^6.0 || ^7.0",
         "symfony/twig-bridge": "^5.4 || ^6.0 || ^7.0",
         "symfony/validator": "^5.4 || ^6.0 || ^7.0",
@@ -80,12 +81,13 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Doctrine\\Bundle\\DoctrineBundle\\": ""
+            "Doctrine\\Bundle\\DoctrineBundle\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "": "Tests/DependencyInjection"
+            "Doctrine\\Bundle\\DoctrineBundle\\Tests\\": "tests",
+            "Fixtures\\": "tests/DependencyInjection/Fixtures"
         }
     },
     "config": {
