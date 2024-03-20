@@ -11,6 +11,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: BoissonsRepository::class)]
 #[ApiResource()]
+
 class Boissons
 {
     #[ORM\Id]
@@ -23,7 +24,6 @@ class Boissons
 
     #[ORM\Column(length: 255)]
 
-    #[Groups(['commandes'])]
     private ?string $nom = null;
 
     #[ORM\Column]

@@ -1,3 +1,0 @@
-<?php //route_name_f91be4a97bb0679ea2529428e7883210
-
-return [PHP_INT_MAX, 'api_commandes_get_collection'];
