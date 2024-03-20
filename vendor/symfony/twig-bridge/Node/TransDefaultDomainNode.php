@@ -11,7 +11,6 @@
 
 namespace Symfony\Bridge\Twig\Node;
 
-use Twig\Attribute\YieldReady;
 use Twig\Compiler;
 use Twig\Node\Expression\AbstractExpression;
 use Twig\Node\Node;
@@ -19,7 +18,6 @@ use Twig\Node\Node;
 /**
  * @author Fabien Potencier <fabien@symfony.com>
  */
-#[YieldReady]
 final class TransDefaultDomainNode extends Node
 {
     public function __construct(AbstractExpression $expr, int $lineno = 0, ?string $tag = null)
